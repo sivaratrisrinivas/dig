@@ -1,15 +1,15 @@
-import { z } from "zod/v3";
+import * as z from "zod/v4";
 import type { AgaveClient } from "../agave/agaveClient.js";
 import { money, toMcpText, type ToolResult } from "./format.js";
 
-export const getApInvoicesSchema = {
+export const getApInvoicesSchema = z.object({
   projectId: z.string().optional().describe("Agave project ID or project code."),
   projectQuery: z.string().optional().describe("Project name or customer search text when projectId is unknown."),
   vendor: z.string().optional().describe("Vendor name filter."),
   status: z.enum(["draft", "approved", "paid", "unpaid", "overdue"]).optional().describe("Optional AP invoice status filter.")
-};
+});
 
-export const getApInvoicesObjectSchema = z.object(getApInvoicesSchema);
+export const getApInvoicesObjectSchema = getApInvoicesSchema;
 
 export async function getApInvoicesTool(
   client: AgaveClient,

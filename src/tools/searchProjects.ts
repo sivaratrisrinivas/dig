@@ -1,13 +1,13 @@
-import { z } from "zod/v3";
+import * as z from "zod/v4";
 import type { AgaveClient } from "../agave/agaveClient.js";
 import { toMcpText, type ToolResult } from "./format.js";
 
-export const searchProjectsSchema = {
+export const searchProjectsSchema = z.object({
   query: z.string().optional().describe("Project name, project code, customer, source ID, or location to search for."),
   status: z.enum(["active", "preconstruction", "closed"]).optional().describe("Optional project status filter.")
-};
+});
 
-export const searchProjectsObjectSchema = z.object(searchProjectsSchema);
+export const searchProjectsObjectSchema = searchProjectsSchema;
 
 export async function searchProjectsTool(
   client: AgaveClient,

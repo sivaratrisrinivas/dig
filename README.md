@@ -2,6 +2,8 @@
 
 Dig is a local MCP server for querying construction finance data through an Agave-compatible interface. The v1 prototype is read-only and ships with a realistic fictional contractor dataset for Northstar Builders.
 
+Dig uses the current MCP TypeScript SDK v2 server package: `@modelcontextprotocol/server`, `serveStdio`, and `registerTool` with Zod v4 schemas.
+
 ## Tools
 
 - `search_projects` - find projects by name, project code, customer, or status.
